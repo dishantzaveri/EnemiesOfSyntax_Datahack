@@ -7,6 +7,7 @@ import Register from './screens/Register'
 import DashBoard from './screens/DashBoard'
 import Welcome from './screens/welcome';
 import update from './screens/UpdateCar';
+import Splash from './screens/Splash';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name='Splash' component={Splash}/>
         <Stack.Screen name='Welcome' component={Welcome}/>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
