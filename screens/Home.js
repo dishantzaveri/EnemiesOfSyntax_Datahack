@@ -5,10 +5,10 @@ import React  ,{ useState } from 'react'
 export default function Home() {
 
   return (
-    <SafeAreaView style={{ flex:1}}>
+    <SafeAreaView style={{ flex:1,backgroundColor:'#000000'}}>
       <ScrollView>
         <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text style={{fontSize:20,justifyContent: 'center',color:"black",fontWeight:'bold',paddingTop: '3%',left:20,fontFamily: 'notoserif'}}>Sell Your Cars Here</Text>
+        <Text style={{fontSize:20,justifyContent: 'center',color:"white",fontWeight:'bold',paddingTop: '3%',left:20,fontFamily: 'notoserif'}}>Top used Cars</Text>
           <View style={{ backgroundColor: "#8F8A87", borderRadius: 10, overflow: "hidden", height: 250, width: 160, left: 15, top: 20 }}>
             <View>
               <Image
@@ -43,7 +43,7 @@ export default function Home() {
               </Text>
             </View>
           </View>
-          <Text style={{fontSize:20,justifyContent: 'center',color:"black",fontWeight:'bold',top:-200,left:25,fontFamily: 'notoserif'}}>Active Promotions</Text>
+          <Text style={{fontSize:20,justifyContent: 'center',color:"white",fontWeight:'bold',top:-200,left:25,fontFamily: 'notoserif'}}>Active Auctions</Text>
           <View style={{ backgroundColor: "#9E9B9F", borderRadius: 10, overflow: "hidden", height: 250, width: 330, left: 15, top: -180 }}>
             <View>
               <Image
@@ -104,7 +104,7 @@ export default function Home() {
               </Text>
             </View>
           </View>
-          <Text style={{fontSize:20,justifyContent: 'center',color:"black",fontWeight:'bold',top:-130,left:25,fontFamily: 'notoserif'}}>Top Dealers</Text>
+          <Text style={{fontSize:20,justifyContent: 'center',color:"white",fontWeight:'bold',top:-130,left:25,fontFamily: 'notoserif'}}>Top Dealers</Text>
           <View style={{borderRadius: 10, overflow: "hidden", height: 100, width: 150, left: 15, top: -100 }}>
             <View>
               <Image
@@ -182,18 +182,18 @@ export default function Home() {
 const styles = StyleSheet.create({
   input1: {
     fontSize: 20,
-    color: "black",
+    color: "white",
     fontWeight: 'bold',
     fontFamily: 'Roboto'
   },
   input2: {
     fontSize: 15,
-    color: "black",
+    color: "white",
     fontFamily: 'Roboto'
   },
   input3: {
     fontSize: 12,
-    color: "black",
+    color: "white",
     fontFamily: 'Roboto'
   }
 })

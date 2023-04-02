@@ -63,38 +63,6 @@ export default function AddVehicle({ route, navigation }) {
     return data;
   };
 
-
-  // const uploadImage = async () => {
-  //   fetch('http://192.168.8.109:8000/cars/save', {
-  //     method: 'POST',
-  //     body: createFormData(photo, {
-  //       // username: username,
-  //       brand: brand,
-  //       transmissionType: transmissionType,
-  //       fuelType: fuelType,
-  //       color: color,
-  //       price: price
-  //     }),
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-type': 'multipart/form-data',
-  //     },
-  //   })
-  //   .then((response) => response.json())
-  //   .then((json) => {
-  //       if (json.status === "200") {
-  //           Alert.alert(json.message);
-  //           clearTextFields();
-  //       } else {
-  //           Alert.alert(json.message);
-  //       }
-  //   })
-  //   .catch((error) => {
-  //       Alert.alert('Error occured.Try again shortly');
-  //   });
-
-  // }
-
   const uploadImage = async () => {
 
     if (brand != "" && transmissionType != "" && fuelType != "" && color != "" && price != "") {
@@ -137,11 +105,11 @@ export default function AddVehicle({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'black'}}>
       <ScrollView contentContainerStyle={{ height: 650 }}>
         {/* <ScrollView> */}
         <View style={styles.container}>
-          <Text style={{ fontSize: 20, justifyContent: 'center', color: "black", fontWeight: 'bold', top: 10, left: -85, fontFamily: 'notoserif' }}>Add New Vehicle</Text>
+          <Text style={{ fontSize: 20, justifyContent: 'center', color: "white", fontWeight: 'bold', top: 10, left: 10, fontFamily: 'notoserif',alignContent:'center',alignSelf:'center' }}>Add the used Car details</Text>
 
           <Image style={styles.uploadImageContainer} source={{ uri: photo.uri }} />
 
@@ -189,7 +157,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#000000',
   },
   input1: {
     marginTop: '15%',
@@ -197,7 +166,8 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     borderRadius: 10,
-    fontFamily: 'normal'
+    fontFamily: 'normal',
+    backgroundColor: 'white',
 
   },
   input2: {
@@ -206,7 +176,9 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     borderRadius: 10,
-    fontFamily: 'normal'
+    fontFamily: 'normal',
+    backgroundColor: 'white',
+
   },
   btn: {
     width: '40%',
@@ -230,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // top: -85,
     // top: 45,
-    marginTop: '-14%',
+    marginTop: '-12%',
     left: 85,
     borderRadius: 15
   },
@@ -244,7 +216,7 @@ const styles = StyleSheet.create({
     top: 40,
     // marginTop: '3%',
     borderRadius: 15,
-    borderColor: "black"
+    borderColor: "white"
   },
   // MainContainer: {
   //   flex: 1,
@@ -268,7 +240,7 @@ const styles = StyleSheet.create({
 
   },
   uploadImageContainer: {
-    borderColor: 'black',
+    borderColor: 'white',
     borderWidth: 1,
     width: '50%',
     height: '25%',

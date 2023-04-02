@@ -48,7 +48,7 @@ export default function VehicleInfo({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1,backgroundColor:'#000000' }}>
       <ScrollView contentContainerStyle={{ height: 1350 }}>
         <ScrollView horizontal contentContainerStyle={{ width: 1090 }}>
           <Text style={{ fontSize: 20, justifyContent: 'center', color: "black", fontWeight: 'bold', paddingTop: '3%', left: 20, fontFamily: 'notoserif' }}>General Cars</Text>

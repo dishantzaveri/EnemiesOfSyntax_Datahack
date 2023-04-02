@@ -10,10 +10,10 @@ export default function UpdateCar() {
     const [open, setOpen] = useState(false)
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1,backgroundColor:'black' }}>
             <ScrollView>
                 <View style={styles.container}>
-                    <Text style={{ fontSize: 20, justifyContent: 'center', color: "black", fontWeight: 'bold', paddingTop: '3%', paddingRight: '45%', fontFamily: 'Roboto' }}>Update Information</Text>
+                    <Text style={{ fontSize: 20, justifyContent: 'center', color: "white", fontWeight: 'bold', paddingTop: '10%', fontFamily: 'Roboto',alignContent:'center',alignSelf:'center',alignItems:'center' }}>Update Information</Text>
 
                     <TextInput style={styles.input1} placeholder='brand' value={brand} onChangeText={(e) => { setBrand(e) }} />
                     <TextInput style={styles.input2} placeholder='transmissionType' value={transmissionType} onChangeText={(e) => { setTransmissionType(e) }} />
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '80%',
         borderRadius: 10,
-        fontFamily: 'normal'
+        fontFamily: 'normal',
+        backgroundColor: 'white',
 
     },
     input2: {
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '80%',
         borderRadius: 10,
-        fontFamily: 'normal'
+        fontFamily: 'normal',
+        backgroundColor: 'white',
     },
     button: {
         borderRadius: 10,

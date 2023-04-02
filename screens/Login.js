@@ -1,6 +1,7 @@
 import { View, Input, FlatList, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, ImageBackground, Alert, ScrollView, SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Divider } from "@react-native-material/core";
+import LottieView from 'lottie-react-native';
 
 
 export default function Login({ navigation }) {
@@ -40,11 +41,17 @@ export default function Login({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1,backgroundColor: '#000000' }}>
       <ScrollView>
         <View style={styles.container} >
-          <Text style={{ fontSize: 35, justifyContent: 'center', color: "black", fontWeight: 'bold', paddingTop: '15%', fontFamily: 'Roboto' }}>Welcome</Text>
-          <Image style={styles.tinyLogo} source={require('../assets/icon/user8.png')} />
+          <Text style={{ fontSize: 35, justifyContent: 'center', color: "white", fontWeight: 'bold', paddingTop: '15%', fontFamily: 'Roboto' }}>Welcome</Text>
+          <LottieView
+            source={require('./car.json')}
+            autoPlay={true}
+            loop={false}
+
+            style={styles.animation}
+          />
           <TextInput style={styles.input1} value={username} onChangeText={(e) => { setUsername(e) }} placeholder='Username' />
           <TextInput style={styles.input2} value={password} onChangeText={(e) => { setPassword(e) }} placeholder='Password' />
 
@@ -52,12 +59,12 @@ export default function Login({ navigation }) {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => { navigation.navigate("DashBoard") }}
-            // onPress={() => { loginUser() }}
+          // onPress={() => { loginUser() }}
           // onPress={() => { loginUser() }} 
           >
             <Text style={{ color: '#ffff', fontSize: 20 }}>Login</Text>
           </TouchableOpacity>
-          <Text style={{ fontSize: 18, color: "black", paddingTop: '8%', left: '-13%' }}>Don't have an account?</Text>
+          <Text style={{ fontSize: 18, color: "white", paddingTop: '8%', left: '-13%' }}>Don't have an account?</Text>
           <TouchableOpacity
             style={styles.btn2}
             onPress={() => {
@@ -68,7 +75,7 @@ export default function Login({ navigation }) {
               }
             }}
           >
-            <Text style={{ color: 'black', fontSize: 18, fontWeight: 'bold' }}>Create One</Text>
+            <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>Create One</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -83,6 +90,9 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     borderRadius: 15,
+    backgroundColor: 'white',
+    fontFamily: 'Roboto'
+
 
   },
   input2: {
@@ -91,11 +101,15 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     borderRadius: 15,
+    backgroundColor: 'white',
     fontFamily: 'Roboto'
   },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#000000',
+    flex: 1,
+
   },
   btn: {
     width: '80%',
@@ -107,6 +121,16 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     borderRadius: 15,
 
+  },
+  animation: {
+    width: 150,
+    height: 200,
+    margin: 25,
+    marginLeft: 20,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '5%'
   },
   btn2: {
     width: '60%',

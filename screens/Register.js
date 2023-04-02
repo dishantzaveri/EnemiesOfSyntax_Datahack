@@ -1,5 +1,6 @@
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image, Alert, ScrollView, SafeAreaView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import LottieView from 'lottie-react-native';
 
 
 export default function Register({ navigation }) {
@@ -49,11 +50,17 @@ export default function Register({ navigation }) {
 
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'#000000'}}>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={{ fontSize: 35, justifyContent: 'center', color: "black", fontWeight: 'bold', paddingTop: '10%', fontFamily: 'Roboto' }}>Create Account</Text>
-          <Image style={styles.tinyLogo} source={require('../assets/icon/reg.png')} />
+          <Text style={{ fontSize: 35, justifyContent: 'center', color: "white", fontWeight: 'bold', paddingTop: '10%', fontFamily: 'Roboto' }}>Create Account</Text>
+          <LottieView
+            source={require('./car.json')}
+            autoPlay={true}
+            loop={false}
+
+            style={styles.animation}
+          />
           <TextInput style={styles.input1} value={fullName} onChangeText={(e) => { setFullName(e) }} placeholder='Full Name' />
           <TextInput style={styles.input2} value={phoneNumber} onChangeText={(e) => { setPhoneNumber(e) }} placeholder='Phone Number' />
           <TextInput style={styles.input2} value={username} onChangeText={(e) => { setUsername(e) }} placeholder='Username' />
@@ -69,7 +76,7 @@ export default function Register({ navigation }) {
 
           </TouchableOpacity>
 
-          <Text style={{ fontSize: 18, color: "black", paddingTop: '8%', left: '-10%' }}>Already have an account?</Text>
+          <Text style={{ fontSize: 18, color: "white", paddingTop: '8%', left: '-10%' }}>Already have an account?</Text>
           <TouchableOpacity
             style={styles.btn2}
             onPress={() => {
@@ -80,7 +87,7 @@ export default function Register({ navigation }) {
               }
             }}
           >
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>Login</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Login</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -95,7 +102,8 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     borderRadius: 15,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    backgroundColor: 'white',
 
   },
   input2: {
@@ -103,7 +111,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: '80%',
-    borderRadius: 15
+    borderRadius: 15,
+    backgroundColor: 'white',
+  },
+  animation: {
+    width: 150,
+    height: 200,
+    margin: 25,
+    marginLeft: 20,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '5%'
+
   },
   container: {
     justifyContent: 'center',

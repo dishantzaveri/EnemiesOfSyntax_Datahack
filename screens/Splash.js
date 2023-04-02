@@ -41,12 +41,12 @@ export default class Splash extends Component {
     }
     render() {
         return <View style={styles.container}>
-            <Animated.Image source={require('../assets/background/logo.jpg')} 
+            <Animated.Image source={require('../assets/background/logo.jpeg')} 
                 style={{...styles.logo, opacity: this.state.logoOpacity}} >                
             </Animated.Image>
             <Animated.Text style={{...styles.title, 
                                 marginTop:this.state.titleMarginTop}}>
-                Dentify
+                CarGPT
             </Animated.Text>
         </View>
     }
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     logo: {
-        width: 100,
-        height: 100,
+        width: 200,
+        height: 200,
         borderRadius: 10 ,
     },
     title: {        

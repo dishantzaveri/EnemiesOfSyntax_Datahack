@@ -8,6 +8,8 @@ import { IconComponentProvider, Icon } from "@react-native-material/core";
 import { HomeStackNavigator, ContactStackNavigator } from "./StackNavigator";
 import Home from './Home';
 import UpdateCar from './UpdateCar';
+import Maps from './Maps';
+import Profile from './Profile';
 
 
 
@@ -27,7 +29,6 @@ export default function DashBoard() {
           tabBarIcon: () => (<Image source={require("../assets/icon/adding.png")} style={{ width: 20, height: 20 }} />), header: () => null
         }}
         component={AddVehicle} />
-
       <Tab.Screen name="VehicleInfo" options={{
         tabBarIcon: () => (<Image source={require("../assets/icon/info3.png")} style={{ width: 20, height: 20 }} />), header: () => null
       }}
