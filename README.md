@@ -7,6 +7,6 @@
 </p>
 <br>
 
-<p align = "center">
+<!-- <p align = "center">
 <img height = "705" width = "706" src= "https://github.com/Wyverical/Mercedes-Benz-Car-Price-Prediction-App/blob/main/streamlitapp.gif"/></a>
-</p>
+</p> -->
