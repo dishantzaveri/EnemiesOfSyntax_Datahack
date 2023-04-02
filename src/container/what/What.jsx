@@ -6,12 +6,12 @@ const What = () => (
   <div className="gpt3__whatgpt3 section__margin" id="wgpt3">
     <div className="gpt3__whatgpt3-feature">
       <Feature
-        title="What is Edmunds?"
+        title="What is CarGPT?"
         text="Our platform allows you to showcase your car with high-quality images, detailed descriptions, and a variety of customizable options."
       />
     </div>
     <div className="gpt3__whatgpt3-heading">
-      <h1 className="gradient__text2">
+      <h1 className="gradient__text">
         Sell your car with confidence - Let us handle the details
       </h1>
     </div>

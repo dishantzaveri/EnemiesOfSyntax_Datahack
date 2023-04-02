@@ -5,7 +5,7 @@ import Car from "../../CAR/Car";
 const Header = () => (
   <div className="gpt3__header section__padding" id="home">
     <div className="gpt3__header-content">
-      <h1 className="gradient__text">Edmunds</h1>
+      <h1 className="gradient__text">CarGPT</h1>
       <p>
         Say goodbye to the hassle of selling your car <br /> Start selling your
         car today and join the thousands of satisfied <br />

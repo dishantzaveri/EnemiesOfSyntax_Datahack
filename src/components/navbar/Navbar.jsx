@@ -18,6 +18,9 @@ const Navbar = () => {
   return (
     <div className="gpt3__navbar">
       <div className="gpt3__navbar-links">
+        <div className="gpt3__navbar-links_logo">
+          <img src="dentify" alt="" />
+        </div>
         <div className="gpt3__navbar-links_container">
           <p>
             <Link to="/">Home</Link>
