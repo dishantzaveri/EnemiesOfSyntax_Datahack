@@ -23,7 +23,7 @@ if social_acc_nav == 'About':
     • Data Analytics (Python/SQL/Tableau) \n 
     • Industrial Robotics (KUKA Robots) \n 
     • Interned as a Data Engineer''')
-    st.sidebar.markdown("[ Visit Google Scholar Account](https://scholar.google.com/citations?user=-4Vyig8AAAAJ&hl=en)")
+    st.sidebar.markdown("[ Github Source Code](https://github.com/dishantzaveri/EnemiesOfSyntax_Datahack)")
 
 elif social_acc_nav == 'Kaggle':
     st.sidebar.image('kaggle.jpg')
@@ -41,7 +41,7 @@ menu_list = ['Exploratory Data Analysis', "Predict Price"]
 menu = st.radio("Menu", menu_list)
 
 if menu == 'Exploratory Data Analysis':
-    st.title('Exploratory Data Analysis of Mercedes Benz Car Models ')
+    st.title('Exploratory Data Analysis of Car Models ')
 
     if st.checkbox("View data"):
         st.write(df)
@@ -55,21 +55,13 @@ if menu == 'Exploratory Data Analysis':
     st.image('model_mpg.jpg')
     st.markdown("<h4 style='text-align: left;'> Insights </h4>", unsafe_allow_html=True)
     st.markdown('''
-    The objective for using the mean of all data is to show overall performance of automobile models in terms of
-     miles per gallon. We may derive the following assertions from the data provided:\n
-    1. There are about **15** automobile models that get a higher miles per gallon than the average.\n
-    2. In terms of miles per gallon, the E class vehicle outperforms the G class model by more than **5.4 percent**.\n
-    3. When the miles/gallon mean value is greater, the automobile can drive **further** than when the mean value
-     is lower.\n
-    4. It may also be deduced that the mercedes automobile models which are above average value **emits less** carbon 
-    dioxide when compared to other models''')
+    The used car market is a significant and growing industry, with millions of used cars being sold every year. One of the biggest challenges for buyers and sellers is determining the fair market value of a used car, which can vary widely depending on a variety of factors, including make, model, year, mileage, and condition.''')
 
     st.markdown("<h4 style='text-align: left;'> B) Model v/s Mileage </h4>", unsafe_allow_html=True)
     st.image('model_mileage.jpg')
     st.markdown("<h4 style='text-align: left;'> Insights </h4>", unsafe_allow_html=True)
     st.markdown('''
-    1.   According to the median of the statistics, more than 11 Mercedes model automobiles had better mileage
-     performance.
+    1.  According to a study conducted by Carfax, a vehicle with severe damage can lose upto 60 to 70% of it's pre-damaged value, while a vehicle with less scratches and dents loses about 10-25% of it's pre-damage price and a car moderately damaged may lose upto 40-50% of the same price.
     2.   However, when compared to the median value of our data, the Mercedes 
     CLK model has approximately **12.51%** higher miles, and altogether, the CLK model delivers
      **15.67%** mileage to the dataset.
@@ -168,7 +160,7 @@ elif menu == 'Predict Price':
         "gl class", "gla class", "glb class", "glc class", "gle class", "gls class", "m class", "r class", "s class",
         "sl class", "slk", "v class", "x-class"]
     transmission_list = ['automatic', 'manual', 'other', 'semi-auto']
-    fuel_list = ['diesel', 'hybrid', 'other', 'petrol']
+    fuel_list = ['diesel', 'CNG', 'LPG', 'petrol']
 
     year = st.slider("Enter the year", 1970, 2021)
 
