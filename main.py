@@ -17,12 +17,13 @@ st.title('Predict M\Car Prices (in Euros)')
 social_acc = ['About', 'Kaggle', 'Medium', 'LinkedIn']
 social_acc_nav = st.sidebar.selectbox('About', social_acc)
 if social_acc_nav == 'About':
-    st.sidebar.markdown("<h2 style='text-align: center;'>Dentify</h2> ", unsafe_allow_html=True)
+    st.sidebar.markdown("<h2 style='text-align: center;'>CAR GPT</h2> ", unsafe_allow_html=True)
     st.sidebar.markdown('''---''')
-    st.sidebar.markdown('''
-    • Data Analytics (Python/SQL/Tableau) \n 
-    • Industrial Robotics (KUKA Robots) \n 
-    • Interned as a Data Engineer''')
+    # st.sidebar.markdown('''
+    # • Data Analytics (Python/SQL/Tableau) \n 
+    # • Industrial Robotics (KUKA Robots) \n 
+    # • Interned as a Data Engineer''')
+    st.sidebar.markdown("[ ML Models](https://drive.google.com/drive/folders/1PxWZxr6TdD6cvp7HcNbnEol4W07YRawj?usp=sharing)")
     st.sidebar.markdown("[ Github Source Code](https://github.com/dishantzaveri/EnemiesOfSyntax_Datahack)")
 
 elif social_acc_nav == 'Kaggle':
