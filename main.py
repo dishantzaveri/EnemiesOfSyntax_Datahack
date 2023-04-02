@@ -6,12 +6,132 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 import random
+from PIL import Image
+import numpy as np
+from tensorflow.keras.layers import MaxPooling2D
+
+from IPython.display import Image
+from keras import optimizers
+from keras.models import Sequential, load_model, Model
+from keras.layers import Convolution2D, MaxPooling2D, ZeroPadding2D, Activation, Dense, Dropout, Flatten
+#import #paddleocr
+from keras.preprocessing.image import array_to_img, img_to_array, load_img
+from keras.regularizers import l2, l1
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import KFold
+import scipy
+import scipy.sparse
+
+from scipy.sparse import hstack
+import requests
+from sklearn.preprocessing import OneHotEncoder
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Input,Dropout,Flatten,concatenate
+import tensorflow.keras
+from tensorflow.keras.models import Model,load_model
+from tensorflow.keras.layers import BatchNormalization
+
+from tensorflow.keras import optimizers
+from tensorflow.keras.metrics import mean_squared_logarithmic_error
+import warnings
+from torch.utils.data import DataLoader,TensorDataset,Dataset
+warnings.filterwarnings("ignore")
+import re
+from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk.tokenize import word_tokenize
+import gc
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+import tensorflow as tf
+
+
+def pipeline(df_test):
+    def one_hot_encoder(train_data):
+        ohe_encoder = OneHotEncoder()
+        train_ohe = ohe_encoder.fit_transform(train_data)    
+        return train_ohe
+    def SMLP(frame,i):    
+        input = Input(shape=(frame.shape[1],),sparse=True,dtype='float32')
+        output = Dense(i,activation='relu')(input)
+        output = BatchNormalization()(output)
+        if i==256:                      
+            while i!=64:          
+                i/=2           
+                output = Dense(i,activation='relu')(output)                
+        else:                      
+            while i!=16:                      
+                i/=2
+                output = Dense(i,activation='relu')(output)  
+        output = Dropout(0.2)(output)
+        output = Dense(1)(output)
+        model = Model(input,output)
+        return model
+    def text_encoder(training,type,params):
+        '''
+        Description -> Encoding different types of input text data according to its requirements using Countvectorizer
+                       & Tfidfvectorizer and returning the transformed data as output
+        '''
+        if(type == "BOW"):
+            vectorizer = CountVectorizer(ngram_range = params[0],min_df = params[1],max_df = params[2],max_features = params[3])
+        elif(type == "TFIDF"):
+            N_GRAMS =params
+            vectorizer = vectorizer = TfidfVectorizer(max_features = 100000,
+                                     ngram_range = (1, N_GRAMS),
+                                     strip_accents = 'unicode',
+                                     analyzer = 'word',
+                                     token_pattern = r'\w+')
+        elif(type=="CNTVECT"):
+            vectorizer = CountVectorizer(vocabulary=params, lowercase=False, binary=True)
+
+        train_transform = vectorizer.fit_transform(training)    
+        if (type == "BOW"):
+            return train_transform, ''
+        elif (type == "CNTVECT"):
+            return train_transform, ''
+        elif (type == "TFIDF"):
+            feat_names = vectorizer.get_feature_names_out()
+            del vectorizer
+            gc.collect()
+            return train_transform, feat_names
+    ocr_reader = paddleocr.PaddleOCR()
+    result = ocr_reader.ocr(image)
+    DL_text = ' '.join([word[1][0] for line in result for word in line])
+    url = "https://vehicle-rc-information.p.rapidapi.com/"
+    payload = {"VehicleNumber": result[0][0][1][0]}
+    headers = {
+        "content-type": "application/json",
+        "X-RapidAPI-Key": "0768fbb2bemsh0762c21b0ca177bp17cc16jsn578413086999",
+        "X-RapidAPI-Host": "vehicle-rc-information.p.rapidapi.com"
+    }
+    response = requests.request("POST", url, json=payload, headers=headers)
+    print(response.text)
+    X_test_name,_ = text_encoder(df_test['Name'], "TFIDF", 2)
+    X_test_Text,_ = text_encoder(df_test['text'], "TFIDF", 1)
+    s1=one_hot_encoder(np.reshape(df_test['Seats'].values, (-1, 1)))
+    o1=one_hot_encoder(np.reshape(df_test['Owner_Type'].values, (-1, 1)))
+    t1=one_hot_encoder(np.reshape(df_test['Transmission'].values, (-1, 1)))
+    f1=one_hot_encoder(np.reshape(df_test['Fuel_Type'].values, (-1, 1)))
+    hotcodedtest = hstack((s1,o1,t1,f1)).tocsr().astype('float32')
+    testframe = hstack((X_test_name,X_test_Text,hotcodedtest)).tocsr().astype('float32')
+    return np.expm1(model1.predict(testframe)[:, 0])
 
 
 # import data file csv
 df = pd.read_csv('merc.csv')
 # set page title
 st.set_page_config('Price Prediction App')
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image("logo.jpg")
+
+with col3:
+    st.write(' ')
+#st.image('logo.jpg')
 
 st.title('Predict M\Car Prices (in Euros)')
 social_acc = ['About', 'Kaggle', 'Medium', 'LinkedIn']
@@ -37,7 +157,6 @@ elif social_acc_nav == 'Medium':
 elif social_acc_nav == 'LinkedIn':
     st.sidebar.image('linkedin.jpg')
     st.sidebar.markdown("[Visit LinkedIn account](https://www.linkedin.com/in/sarvesh-talele-320356196/)")
-
 menu_list = ['Exploratory Data Analysis', "Predict Price"]
 menu = st.radio("Menu", menu_list)
 
@@ -157,24 +276,33 @@ elif menu == 'Predict Price':
     fuel_dic = {'diesel': 0, 'hybrid': 1, 'other': 2, 'petrol': 3}
 
     model_list = [
-        "a class", "b class", "c class", "cl class", "cla class", "clc class", "clk", "cls class", "e class", "g class",
-        "gl class", "gla class", "glb class", "glc class", "gle class", "gls class", "m class", "r class", "s class",
-        "sl class", "slk", "v class", "x-class"]
+        "SUV", "sedan", "compact"]
     transmission_list = ['automatic', 'manual', 'other', 'semi-auto']
+    Owners_list = ['First', 'Second', 'Third', 'Fourth', 'Other']
     fuel_list = ['diesel', 'CNG', 'LPG', 'petrol']
+
+    img1 = st.file_uploader("Add image 1", type=['png','jpeg','jpg'])
+    img2 = st.file_uploader("Add image 2", type=['png','jpeg','jpg'])
+    img3 = st.file_uploader("Add image 3", type=['png','jpeg','jpg'])
+    img4 = st.file_uploader("Add image 4", type=['png','jpeg','jpg'])
+    img5 = st.file_uploader("Add image 5", type=['png','jpeg','jpg'])
 
     year = st.slider("Enter the year", 1970, 2021)
 
+    No_of_Kms = st.slider("Enter the kms driven", 0, 6500000)
+
     engine_size = st.number_input('Enter Engine Size  (range = 0 - 7)')
 
-    model_choice = st.selectbox(label='Select your favourite Car Model', options=model_list)
-    models = model_dic[model_choice]
+    model_choice = st.selectbox(label='What type is your car?', options=model_list)
+    #models = model_dic[model_choice]
 
     transmission_choice = st.selectbox(label=' Select the Transmission type', options=transmission_list)
     transmissions = transmission_dic[transmission_choice]
+    Owner_type = st.selectbox(label="What is the ownership type?", options= Owners_list)
+
 
     fuel_choice = st.selectbox(label='Select the Fuel type', options=fuel_list)
-    fuels = fuel_dic[fuel_choice]
+    #fuels = fuel_dic[fuel_choice]
 
     data = pd.read_csv('merc.csv')
     data['models'] = data['model'].str.strip()
@@ -250,31 +378,55 @@ elif menu == 'Predict Price':
         return linear_reg.predict([x])[0]
 
 
-    alg = ['Sparse Multilayer Perceptron', 'Light Gradient Boosting Trees']
-    select_alg = st.selectbox('Choose Algorithm for Efficient Predict', alg)
+    #alg = ['Sparse Multilayer Perceptron', 'Light Gradient Boosting Trees']
+    #select_alg = st.selectbox('Choose Algorithm for Efficient Predict', alg)
     if st.button('Predict'):
-        if select_alg == 'Sparse Multilayer Perceptron':
-            st.write('Accuracy Score', decision_score)
-            st.subheader(predict_price_decision(models, year, engine_size, transmissions, fuels))
-            st.markdown("<h5 style='text-align: left;'> Euros </h5>", unsafe_allow_html=True)
+        im = Image.open(img1).convert('L').resize((256,256))
+        x = img_to_array(im).reshape(2,-1)
+        p_model = load_model('idk.h5')
+        model2 = load_model('pipe2model.h5')
+        model3 = load_model('pipe3model.h5')
+        model4 = load_model('pipe4model.h5')
+        p2 = model2.predict(x)
+        p4=None
+        if p2[0][0]<=0.5:
+            p3 = model3.predict(x)[0]
+            p4 = np.argmax(model4.predict(x), axis=1)[0]
+        d = {0:'minor', 1:'moderate', 2:'severe'}
+        price = pipeline(img1)
+        if p4==None:
+            pass
+        elif p4==0:
+            price-=0.1*price
+        elif p4==1:
+            price-=0.45*price
+        else:
+            price-=0.65*price
+        
 
-        elif select_alg == 'Light Gradient Boosting Trees':
-            st.write('Accuracy Score', linear_score)
-            predicted_price = st.subheader(predict_price_linear(models, year, engine_size, transmissions, fuels))
-            st.markdown("<h5 style='text-align: left;'> Euros </h5>", unsafe_allow_html=True)
-            if predict_price_linear(models, year, engine_size, transmissions, fuels) <= 0:
-                st.write('Curious about why Linear Regression received Negative value as a Prediction. Here are '
-                         'some resources which would make you understand mathematics behind Linear Regression better. ')
-                st.markdown("[Stack Overflow answer](https://stackoverflow.com/questions/63757258/negative-accuracy-in-linear-regression)")
-                st.markdown("[Quora](https://www.quora.com/What-is-a-negative-regression)")
-                st.markdown("[Edureka Video on Linear regression ](https://www.youtube.com/watch?v=E5RjzSK0fvY)")
-                st.write('Hope this helps you!')
 
-                st.markdown('---')
+    #    if select_alg == 'Sparse Multilayer Perceptron':
+    #        st.write('Accuracy Score', decision_score)
+    #        st.subheader(predict_price_decision(models, year, engine_size, transmissions, fuels))
+    #        st.markdown("<h5 style='text-align: left;'> Euros </h5>", unsafe_allow_html=True)
 
-    quotes = ['Focus your attention on what is most important', 'Expect perfection (but accept excellence)',
-              'Make your own rules',
-              'Give more than you take', 'Leverage imbalance']
-    quote_choice = random.choice(quotes)
-    st.markdown("<h4 style='text-align: left;'> Quote of the Day </h4>", unsafe_allow_html=True)
-    st.write(quote_choice)
+    #    elif select_alg == 'Light Gradient Boosting Trees':
+    #        st.write('Accuracy Score', linear_score)
+    #        predicted_price = st.subheader(predict_price_linear(models, year, engine_size, transmissions, fuels))
+    #        st.markdown("<h5 style='text-align: left;'> Euros </h5>", unsafe_allow_html=True)
+    #        if predict_price_linear(models, year, engine_size, transmissions, fuels) <= 0:
+    #            st.write('Curious about why Linear Regression received Negative value as a Prediction. Here are '
+    #                     'some resources which would make you understand mathematics behind Linear Regression better. ')
+    #            st.markdown("[Stack Overflow answer](https://stackoverflow.com/questions/63757258/negative-accuracy-in-linear-regression)")
+    #            st.markdown("[Quora](https://www.quora.com/What-is-a-negative-regression)")
+    #            st.markdown("[Edureka Video on Linear regression ](https://www.youtube.com/watch?v=E5RjzSK0fvY)")
+    #            st.write('Hope this helps you!')
+
+    #            st.markdown('---')
+
+    #quotes = ['Focus your attention on what is most important', 'Expect perfection (but accept excellence)',
+    #          'Make your own rules',
+    #          'Give more than you take', 'Leverage imbalance']
+    #quote_choice = random.choice(quotes)
+    #st.markdown("<h4 style='text-align: left;'> Quote of the Day </h4>", unsafe_allow_html=True)
+    #st.write(quote_choice)
