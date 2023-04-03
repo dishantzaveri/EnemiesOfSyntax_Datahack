@@ -25,17 +25,9 @@ Provide discount coupons, which will make sure that the customer will return aga
 The website should identify the channels it will use to reach its customers and promote its services. This could include online advertising, social media, email marketing, or partnerships with other websites and businesses
 The primary revenue streams for a car selling website would come from commission or fees charged for every car sold through the website. This can be either a percentage of the sale price or a flat fee.
 
-# Video
+# Demo
 
 https://user-images.githubusercontent.com/80118978/229631956-d347fbdd-547b-413a-a55d-810fcfd725a2.mp4
-
-# App
-
-https://user-images.githubusercontent.com/80118978/229629622-1f20e696-c526-468e-ac58-3fdf4173fe3d.mp4
-
-#Website
-
-https://user-images.githubusercontent.com/80118978/229629638-455d97ee-1854-4848-9bd1-1a0c9cf84f14.mp4
 
 # Contributors :
 <br />Dishant Zaveri (ReactNative + Ml) : https://github.com/dishantzaveri
