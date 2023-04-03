@@ -15,11 +15,11 @@ export default function UpdateCar() {
                 <View style={styles.container}>
                     <Text style={{ fontSize: 20, justifyContent: 'center', color: "white", fontWeight: 'bold', paddingTop: '10%', fontFamily: 'Roboto',alignContent:'center',alignSelf:'center',alignItems:'center' }}>Update Information</Text>
 
-                    <TextInput style={styles.input1} placeholder='brand' value={brand} onChangeText={(e) => { setBrand(e) }} />
-                    <TextInput style={styles.input2} placeholder='transmissionType' value={transmissionType} onChangeText={(e) => { setTransmissionType(e) }} />
-                    <TextInput style={styles.input2} placeholder='fuelType' value={fuelType} onChangeText={(e) => { setFuelType(e) }} />
-                    <TextInput style={styles.input2} placeholder='color' value={color} onChangeText={(e) => { setColor(e) }} />
-                    <TextInput style={styles.input2} placeholder='price' value={price} onChangeText={(e) => { setPrice(e) }} />
+                    {/* <TextInput style={styles.input1} placeholder='Image' value={brand} onChangeText={(e) => { setBrand(e) }} /> */}
+                    <TextInput style={styles.input2} placeholder='Km Driven' value={transmissionType} onChangeText={(e) => { setTransmissionType(e) }} />
+                    <TextInput style={styles.input2} placeholder='Model car' value={fuelType} onChangeText={(e) => { setFuelType(e) }} />
+                    <TextInput style={styles.input2} placeholder='Engine Size' value={color} onChangeText={(e) => { setColor(e) }} />
+                    <TextInput style={styles.input2} placeholder='Year' value={price} onChangeText={(e) => { setPrice(e) }} />
 
                     <Pressable
                   style={[styles.button, styles.buttonClose]}

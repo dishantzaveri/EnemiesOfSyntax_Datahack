@@ -126,11 +126,11 @@ export default function AddVehicle({ route, navigation }) {
           </TouchableOpacity>
 
 
-          <TextInput style={styles.input1} placeholder='brand' value={brand} onChangeText={(e) => { setBrand(e) }} />
-          <TextInput style={styles.input2} placeholder='transmissionType' value={transmissionType} onChangeText={(e) => { setTransmissionType(e) }} />
-          <TextInput style={styles.input2} placeholder='fuelType' value={fuelType} onChangeText={(e) => { setFuelType(e) }} />
-          <TextInput style={styles.input2} placeholder='color' value={color} onChangeText={(e) => { setColor(e) }} />
-          <TextInput style={styles.input2} placeholder='price' value={price} onChangeText={(e) => { setPrice(e) }} />
+          <TextInput style={styles.input1} placeholder='Year' value={brand} onChangeText={(e) => { setBrand(e) }} />
+          <TextInput style={styles.input2} placeholder='Km Driven' value={transmissionType} onChangeText={(e) => { setTransmissionType(e) }} />
+          <TextInput style={styles.input2} placeholder='Model car' value={fuelType} onChangeText={(e) => { setFuelType(e) }} />
+          <TextInput style={styles.input2} placeholder='Engine Size' value={color} onChangeText={(e) => { setColor(e) }} />
+          {/* <TextInput style={styles.input2} placeholder='Year' value={price} onChangeText={(e) => { setPrice(e) }} /> */}
 
 
           <TouchableOpacity
