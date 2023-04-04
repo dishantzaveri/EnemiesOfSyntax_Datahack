@@ -32,5 +32,5 @@ https://user-images.githubusercontent.com/80118978/229631956-d347fbdd-547b-413a-
 # Contributors :
 <br />Dishant Zaveri (ReactNative + Ml) : https://github.com/dishantzaveri
 <br />Aditya Shah (Ml) : https://github.com/adityashah841
-<br />MSiddhant Dutta (Ml) : https://github.com/elucidator8918
+<br />Siddhant Dutta (Ml) : https://github.com/elucidator8918
 <br />Vividha Jagtap (React Frontend) : https://github.com/vividha09
